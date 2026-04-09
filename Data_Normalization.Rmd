@@ -23,6 +23,19 @@ movies <- movie[,c("id", "title", "original_title", "imdb_id", "release_date",
                    "homepage", "poster_path", "backdrop_path")]
 
 #save table as csv
-write_csv(movies, "movies.csv")
+#write_csv(movies, "movies.csv")
+```
+
+```{r}
+# ratings table
+ratings <- movie |>
+  select(id = id,
+         movie_id = id,
+         popularity,
+         vote_count,
+         vote_average)
+
+#save table as csv
+#write_csv(ratings, "ratings.csv")
 ```
 
