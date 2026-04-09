@@ -13,5 +13,16 @@ library(tidyverse)
 ```{r}
 # load un-normalized data 
 movie <- read_csv("movie.csv")
+colnames(movie)
+```
+
+```{r}
+# movies table
+movies <- movie[,c("id", "title", "original_title", "imdb_id", "release_date",
+                   "runtime", "budget", "revenue", "overview", "tagline", 
+                   "homepage", "poster_path", "backdrop_path")]
+
+#save table as csv
+write_csv(movies, "movies.csv")
 ```
 
