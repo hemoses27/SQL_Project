@@ -6,10 +6,12 @@ output: pdf_document
 ---
 
 ```{r}
+# load necessary packages
 library(tidyverse)
 ```
 
 ```{r}
+# load un-normalized data 
 movie <- read_csv("movie.csv")
 ```
 
