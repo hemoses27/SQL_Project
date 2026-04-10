@@ -95,3 +95,19 @@ movies_genres <- movies_genres |>
 #write_csv(movies_genres, "movies_genres.csv")
 ```
 
+```{r}
+# languages_table
+languages <- movie |>
+  select(id, spoken_languages)
+
+languages <- languages |>
+  separate_rows(spoken_languages, sep = ",\\s*")
+
+language <- unique(languages$spoken_languages)
+id <- 1:length(language)
+
+languages <- as.data.frame(cbind(id, language))
+
+#write_csv(languages, "languages.csv")
+```
+
