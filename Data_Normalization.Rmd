@@ -39,3 +39,37 @@ ratings <- movie |>
 #write_csv(ratings, "ratings.csv")
 ```
 
+```{r}
+# genres table
+genres <- movie |>
+  select(id, genres)
+
+genres <- genres |>
+  separate_rows(genres, sep = ",\\s*")
+
+name <- unique(genres$genres)
+id <- 1:length(name)
+description <- c("serious stories that focus on character-driven narratives",
+                 "wholesome stories that apeal to all ages",
+                 "stories often including dangerous journeys or quests",
+                 "non-fiction stories",
+                 "stories about war, usually based on true events",
+                 "funny stories designed to make people laugh",
+                 "love stories that focus on character-driven narratives",
+                 "adventure stories that contain unrelalistic aspects",
+                 "fast paced stories usually envolving danger",
+                 "stories that typically elicit high levels of suspense",
+                 "stories characterized by supernatural elements",
+                 "scary stories that elicit fear",
+                 "stories that revolve around somethign unknown",
+                 "stories that incorporate songs and dance",
+                 "hisorical stories that are usuaally based on true events",
+                 "stories revolving around illicit activites",
+                 "stories told by frame to frame capturing",
+                 "stories typically surrounding 19th centrury cowboys")
+
+genres <- as.data.frame(cbind(id, name, description))
+
+#write_csv(genres, "genres.csv")
+```
+
