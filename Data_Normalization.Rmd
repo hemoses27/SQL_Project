@@ -111,3 +111,25 @@ languages <- as.data.frame(cbind(id, language))
 #write_csv(languages, "languages.csv")
 ```
 
+```{r}
+# movies_languages table
+movies_languages <- movie |>
+  select(movies_id = id, 
+         language = spoken_languages)
+
+movies_languages <- movies_languages |>
+  separate_rows(language, sep = ",\\s*")
+
+temp <- languages |>
+  select(languages_id = id,
+         language)
+
+movies_languages <- left_join(movies_languages, temp, by = join_by(language))
+movies_languages$id <- 1:nrow(movies_languages)
+
+movies_languages <- movies_languages |>
+  select(id, movies_id, languages_id)
+
+#write_csv(movies_languages, "movies_languages.csv")
+```
+
