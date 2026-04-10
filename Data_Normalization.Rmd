@@ -73,3 +73,25 @@ genres <- as.data.frame(cbind(id, name, description))
 #write_csv(genres, "genres.csv")
 ```
 
+```{r}
+#movies_genres_table
+movies_genres <- movie |>
+  select(movies_id = id, 
+         name = genres)
+
+movies_genres <- movies_genres |>
+  separate_rows(name, sep = ",\\s*")
+
+temp <- genres |>
+  select(genres_id = id,
+         name)
+
+movies_genres <- left_join(movies_genres, temp, by = join_by(name))
+movies_genres$id <- 1:nrow(movies_genres)
+
+movies_genres <- movies_genres |>
+  select(id, movies_id, genres_id)
+
+#write_csv(movies_genres, "movies_genres.csv")
+```
+
